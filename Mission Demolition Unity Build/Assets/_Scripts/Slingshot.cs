@@ -7,6 +7,7 @@ public class Slingshot : MonoBehaviour
     [Header("Inscribed")]   //this shows up in the Inspector pane, contains fields meant to be set within the Inspector
     public GameObject projectilePrefab;
     public float velocityMult = 10f;
+    public GameObject projLinePrefab;
 
     [Header("Dynamic")] //this shows up in the Inspector pane, set dynamically when the game is running
     public GameObject launchPoint;
@@ -76,6 +77,9 @@ public class Slingshot : MonoBehaviour
             projRB.velocity = -mouseDelta * velocityMult;
             //set the _MainCamera POI
             FollowCam.POI = projectile;
+
+            Instantiate<GameObject>(projLinePrefab, projectile.transform);
+
             //severs the connection between this instance of the Slingshot script and the projectile GameObject
             projectile = null;
         }
